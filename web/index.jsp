@@ -9,6 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="hitBean" class="Components.HitList" scope="session"/>
 <html>
 <head>
     <meta charset="utf-8">
@@ -177,6 +178,14 @@
 
                     </thead>
                     <tbody>
+                        <c:forEach var="hit" items="${hitBean.hitList}">
+                            <th>hit.x</th>
+                            <th>1</th>
+                            <th>1</th>
+                            <th>1</th>
+                            <th>1</th>
+                            <th>1</th>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

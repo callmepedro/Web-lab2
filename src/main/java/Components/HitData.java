@@ -1,12 +1,23 @@
 package Components;
 
-public class HitData {
-    private final double x;
-    private final double y;
-    private final double r;
-    private final String curTime;
-    private final double execTime;
-    private final boolean result;
+import java.io.Serializable;
+
+public class HitData implements Serializable {
+    private double x;
+    private double y;
+    private double r;
+    private String curTime;
+    private double execTime;
+    private boolean result;
+
+    public HitData() {
+        this.x = 0;
+        this.y = 0;
+        this.r = 0;
+        this.curTime = "";
+        this.execTime = 0;
+        this.result = false;
+    }
 
     public HitData(double x, double y, double r, String curTime, double execTime, boolean result) {
         this.x = x;
@@ -25,30 +36,55 @@ public class HitData {
                 "<td>%s</td>" +
                 "<td>%.3f</td>" +
                 "<td>%b</td>" +
-                "</tr>",  getX(), getY(), getR(), getCurTime(), getExecTime(), getResult());
+                "</tr>",  getX(), getY(), getR(), getCurTime(), getExecTime(), isResult());
     }
+
 
     public double getX() {
         return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
     }
 
     public double getY() {
         return y;
     }
 
+    public void setY(double y) {
+        this.y = y;
+    }
+
     public double getR() {
         return r;
+    }
+
+    public void setR(double r) {
+        this.r = r;
     }
 
     public String getCurTime() {
         return curTime;
     }
 
+    public void setCurTime(String curTime) {
+        this.curTime = curTime;
+    }
+
     public double getExecTime() {
         return execTime;
     }
 
-    public boolean getResult() {
+    public void setExecTime(double execTime) {
+        this.execTime = execTime;
+    }
+
+    public boolean isResult() {
         return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
     }
 }

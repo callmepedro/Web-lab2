@@ -1,4 +1,5 @@
 import Components.HitData;
+import Components.HitList;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -12,16 +13,15 @@ import java.util.*;
 public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-        @SuppressWarnings("unchecked")
-        List<HitData> hitDataList = (ArrayList<HitData>) session.getAttribute("hitDataList");
-        if (hitDataList != null) {
-            PrintWriter writer = response.getWriter();
-            for (HitData row : hitDataList) {
-                writer.println(row.getString());
-            }
-        }
+//        HttpSession session = request.getSession();
+//
+//        HitList hitList = (HitList) session.getAttribute("hitList");
+//        if (hitList != null) {
+//            PrintWriter writer = response.getWriter();
+//            for (HitData row : hitList.getHitList()){
+//                writer.println(row.getString());
+//            }
+//        }
     }
 
     @Override
@@ -51,16 +51,15 @@ public class AreaCheckServlet extends HttpServlet {
 
             HttpSession session = request.getSession();
 
-            @SuppressWarnings("unchecked")
-            List<HitData> hitDataList = (ArrayList<HitData>) session.getAttribute("hitDataList");
-            if (hitDataList == null){
-                hitDataList = new ArrayList<>();
+            HitList hitList = (HitList) session.getAttribute("hitList");
+            if (hitList == null) {
+                hitList = new HitList();
             }
-            hitDataList.add(hitData);
-            session.setAttribute("hitDataList", hitDataList);
+            hitList.getHitList().add(hitData);
+            session.setAttribute("hitList", hitList);
 
             PrintWriter writer = response.getWriter();
-            for (HitData row : hitDataList){
+            for (HitData row : hitList.getHitList()){
                 writer.println(row.getString());
             }
 

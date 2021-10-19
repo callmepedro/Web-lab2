@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Components.HitData" %><%--
   Created by IntelliJ IDEA.
   User: callmepedro
   Date: 14.10.2021
@@ -7,6 +8,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="hitBean" class="Components.HitList" scope="session"/>
 <html>
 <head>
     <meta charset="utf-8">
@@ -172,8 +175,17 @@
                             <th class="time-col">Время исполнения (мс)</th>
                             <th class="hit-res-col">Результат</th>
                         </tr>
+
                     </thead>
                     <tbody>
+                        <c:forEach var="hit" items="${hitBean.hitList}">
+                            <th>hit.x</th>
+                            <th>1</th>
+                            <th>1</th>
+                            <th>1</th>
+                            <th>1</th>
+                            <th>1</th>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
