@@ -40,16 +40,6 @@ function validateR() {
 }
 
 $(document).ready(function() {
-    $.ajax({
-        type: "GET",
-        url: $(this).attr('action'),
-        data: "load-table",
-        success: function(data)
-        {
-            $('#result-table tbody').empty().append(data);
-        }
-    });
-
     $(document).on ("click", "#submit-button", function () {
         return validateR() && validateX() && validateY()
     });
@@ -76,19 +66,6 @@ $(document).ready(function() {
         }
     });
 
-    $('#main-form').submit(function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: $(this).attr('action'),
-            data: $(this).serialize(),
-            success: function(data)
-            {
-                $('#result-table tbody').empty().append(data);
-            }
-        });
-    });
-
     $("#clear-button").click(function() {
         $('.svg-point').remove();
         $.ajax({
@@ -97,41 +74,70 @@ $(document).ready(function() {
             data: "clear-table=true",
             success: function(data)
             {
-                $('#result-table tbody').empty().append(data);
+                $('#result-table tbody').empty();
             }
         });
     })
 
+    $('#main-form').submit(function(e) {
+        e.preventDefault();
+
+        let form = $("#main-form")
+        let x_value = form.find('input[name="x-value"]').val()
+        let y_value = form.find('input[name="y-value"]').val()
+        let r_value = form.find('input[name="r-value"]').val()
+
+        let cursor_x = x_value / r_value * 100 + 130
+        let cursor_y = 130 - y_value / r_value * 100
+
+        let attrData = `x-value=${x_value}&y-value=${y_value}&r-value=${r_value}`
+        postRequest(attrData).then(function (response) {
+            $('#result-table tbody').append(response)
+            let hitResult = response.includes("true")
+            drawPoint(cursor_x, cursor_y, hitResult, 3)
+        })
+    });
+
     $('#svg-graph').on('click', function (event) {
-        if (validateR()){
+        if (validateR()) {
             let pt = this.createSVGPoint();
             pt.x = event.clientX;
             pt.y = event.clientY;
-            let cursor_pt =  pt.matrixTransform(this.getScreenCTM().inverse());
+            let cursor_pt = pt.matrixTransform(this.getScreenCTM().inverse());
 
             let r_value = $('#r-value').val()
             let x_value = (cursor_pt.x - 130) / 100 * r_value
             let y_value = (130 - cursor_pt.y) / 100 * r_value
 
-            let hitResult = -1;
-            $.ajax({
-                type: "POST",
-                url: $(this).attr('action'),
-                data: `x-value=${x_value}&y-value=${y_value}&r-value=${r_value}`,
-                success: function(data)
-                {
-                    $('#result-table tbody').empty().append(data);
-                }
-            });
-
-            let element = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            element.setAttribute('class', "svg-point")
-            element.setAttribute('cx', cursor_pt.x)
-            element.setAttribute('cy', cursor_pt.y)
-            element.setAttribute('r', 3)
-            element.setAttribute('fill', 'black')
-
-            this.appendChild(element)
+            let attrData = `x-value=${x_value}&y-value=${y_value}&r-value=${r_value}`
+            postRequest(attrData).then(function (response) {
+                $('#result-table tbody').append(response)
+                let hitResult = response.includes("true")
+                drawPoint(cursor_pt.x, cursor_pt.y, hitResult, 3)
+            })
         }
     })
+
+    function drawPoint(x, y, hit, radius) {
+        let element = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        element.setAttribute('class', "svg-point")
+        element.setAttribute('cx', x)
+        element.setAttribute('cy', y)
+        element.setAttribute('r', radius)
+        if (hit) {
+            element.setAttribute('fill', 'red')
+        } else {
+            element.setAttribute('fill', 'black')
+        }
+
+        document.getElementById("svg-graph").appendChild(element)
+    }
+
+    function postRequest(attrData){
+        return $.ajax({
+            type: "POST",
+            url: $(this).attr('action'),
+            data: attrData,
+        });
+    }
 });

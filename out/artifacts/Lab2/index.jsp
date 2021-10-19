@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="Components.HitData" %><%--
+<%@ page import="Components.HitData" %>
+<%@ page import="Components.HitList" %>
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: callmepedro
   Date: 14.10.2021
@@ -9,14 +11,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="hitBean" class="Components.HitList" scope="session"/>
 <html>
 <head>
     <meta charset="utf-8">
     <title>второй</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/styles.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/js/scripts.js"></script>
 </head>
 
 <body>
@@ -178,13 +179,16 @@
 
                     </thead>
                     <tbody>
-                        <c:forEach var="hit" items="${hitBean.hitList}">
-                            <th>hit.x</th>
-                            <th>1</th>
-                            <th>1</th>
-                            <th>1</th>
-                            <th>1</th>
-                            <th>1</th>
+                        <jsp:useBean id="hitList" scope="session" class="Components.HitList"/>
+                        <c:forEach var="hit" items="${hitList.hitList}">
+                            <tr>
+                                <td>${hit.x}</td>
+                                <td>${hit.y}</td>
+                                <td>${hit.r}</td>
+                                <td>${hit.curTime}</td>
+                                <td>${hit.execTime}</td>
+                                <td>${hit.result}</td>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>

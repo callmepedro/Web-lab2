@@ -13,15 +13,7 @@ import java.util.*;
 public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//
-//        HitList hitList = (HitList) session.getAttribute("hitList");
-//        if (hitList != null) {
-//            PrintWriter writer = response.getWriter();
-//            for (HitData row : hitList.getHitList()){
-//                writer.println(row.getString());
-//            }
-//        }
+
     }
 
     @Override
@@ -59,9 +51,7 @@ public class AreaCheckServlet extends HttpServlet {
             session.setAttribute("hitList", hitList);
 
             PrintWriter writer = response.getWriter();
-            for (HitData row : hitList.getHitList()){
-                writer.println(row.getString());
-            }
+            writer.println(hitData.getString());
 
         } catch (NumberFormatException e){
             response.sendError(403, "Invalid value. " + e.getMessage());

@@ -1,3 +1,5 @@
+import Components.HitList;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -7,14 +9,6 @@ import java.io.IOException;
 public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        RequestDispatcher dispatcher;
-//        if (request.getParameter("load-table") == null) {
-//            dispatcher = request.getRequestDispatcher("index.jsp");
-//        }
-//        else{
-//            dispatcher = request.getRequestDispatcher("AreaCheckServlet");
-//        }
-//        dispatcher.forward(request, response);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

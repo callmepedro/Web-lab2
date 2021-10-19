@@ -1,6 +1,8 @@
 package Components;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.util.Locale;
 
 public class HitData implements Serializable {
     private double x;
@@ -29,14 +31,17 @@ public class HitData implements Serializable {
     }
 
     public String getString(){
-        return String.format("<tr>" +
-                "<td>%.3f</td>" +
-                "<td>%.3f</td>" +
-                "<td>%.3f</td>" +
+        String xString = String.valueOf(x);
+        String yString = String.valueOf(y);
+        String rString = String.valueOf(r);
+        return String.format(Locale.ROOT, "<tr>" +
                 "<td>%s</td>" +
-                "<td>%.3f</td>" +
+                "<td>%s</td>" +
+                "<td>%s</td>" +
+                "<td>%s</td>" +
+                "<td>%f</td>" +
                 "<td>%b</td>" +
-                "</tr>",  getX(), getY(), getR(), getCurTime(), getExecTime(), isResult());
+                "</tr>", xString, yString, rString, getCurTime(), getExecTime(), isResult());
     }
 
 
