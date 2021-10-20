@@ -94,7 +94,7 @@ $(document).ready(function() {
         postRequest(attrData).then(function (response) {
             $('#result-table tbody').append(response)
             let hitResult = response.includes("true")
-            drawPoint(cursor_x, cursor_y, hitResult, 3)
+            drawPoint(cursor_x, cursor_y, hitResult, 2.5)
         })
     });
 
@@ -113,8 +113,11 @@ $(document).ready(function() {
             postRequest(attrData).then(function (response) {
                 $('#result-table tbody').append(response)
                 let hitResult = response.includes("true")
-                drawPoint(cursor_pt.x, cursor_pt.y, hitResult, 3)
+                drawPoint(cursor_pt.x, cursor_pt.y, hitResult, 2.5)
             })
+        }
+        else {
+            alert("Сначала нужно ввести значение R")
         }
     })
 
