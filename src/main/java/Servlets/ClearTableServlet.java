@@ -1,3 +1,5 @@
+package Servlets;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -5,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ClearTableServlet", value = "/ClearTableServlet")
+@WebServlet(name = "Servlets.ClearTableServlet", value = "/Servlets.ClearTableServlet")
 public class ClearTableServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

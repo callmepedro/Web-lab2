@@ -1,3 +1,5 @@
+package Servlets;
+
 import Components.HitData;
 import Components.HitList;
 
@@ -9,7 +11,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@WebServlet(name = "AreaCheckServlet", value = "/AreaCheckServlet")
+@WebServlet(name = "Servlets.AreaCheckServlet", value = "/Servlets.AreaCheckServlet")
 public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

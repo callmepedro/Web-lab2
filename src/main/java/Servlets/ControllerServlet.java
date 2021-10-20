@@ -1,3 +1,5 @@
+package Servlets;
+
 import Components.HitList;
 
 import javax.servlet.*;
@@ -5,7 +7,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ControllerServlet", value = "/entry")
+@WebServlet(name = "Servlets.ControllerServlet", value = "/entry")
 public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,10 +21,10 @@ public class ControllerServlet extends HttpServlet {
                 request.getParameter("y-value") != null &&
                 request.getParameter("r-value") != null){
 
-            dispatcher = request.getRequestDispatcher("AreaCheckServlet");
+            dispatcher = request.getRequestDispatcher("Servlets.AreaCheckServlet");
         }
         else if (request.getParameter("clear-table") != null) {
-            dispatcher = request.getRequestDispatcher("ClearTableServlet");
+            dispatcher = request.getRequestDispatcher("Servlets.ClearTableServlet");
         }
         else {
             dispatcher = request.getRequestDispatcher("index.jsp");
