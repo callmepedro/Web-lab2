@@ -1,0 +1,335 @@
+:root {
+    --background-color: #bbded6;
+    --handle-color: #8ac6d1;
+    --table-tr-lighter-color: #c7ccce;
+    --table-tr-darker-color: #a4aaac;
+    --table-tr-lighter-color-hover: #d0d5d7;
+    --table-tr-darker-color-hover: #9da3a5;
+    --neutral-color: #878e90;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+#container {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 4%;
+    height: 449px;
+}
+
+#spacer {
+    width: 4%;
+}
+
+#header {
+    font-size: 16px;
+    border-radius: 0.25em;
+    background-color: white;
+    height: 7em;
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    display: flex;
+    align-items: center;
+}
+
+#author-info {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+#left-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+//background-color: mediumvioletred;
+}
+
+#leftbar {
+    border-radius: 0.25em;
+    background-color: white;
+    height: 100%;
+    width: 40%;
+}
+#rightbar {
+    border-radius: 0.25em;
+    background-color: white;
+    height: 100%;
+    width: 52%;
+}
+
+#clear {
+    clear: both;
+}
+
+#input-bar {
+    font-size: 17px;
+    margin-left: 5%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+}
+
+#r-values-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+#x-values-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#y-values-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+#button-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 12%;
+}
+
+.author-name {
+    font-size: 24px;
+    margin-bottom: 3%;
+}
+
+.author-group {
+//margin-top: 10px;
+    font-size: 18px;
+    color: #696969;
+}
+
+.author-variant {
+    font-size: 18px;
+    color: #696969;
+}
+
+.custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.custom-checkbox+label {
+     display: inline-flex;
+     align-items: center;
+     user-select: none;
+ }
+.custom-checkbox::before, .x-num-negative::before, .x-num-positive::before  {
+    content: '';
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid  var(--neutral-color);
+    border-radius: 0.25em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+.custom-checkbox:checked+label::before {
+    border-color: #4794ec;
+    background-color: #4794ec;
+}
+.custom-checkbox:not(:disabled):not(:checked)+label:hover::before {
+    border-color: #b3d7ff;
+}
+/* стили для активного состояния чекбокса (при нажатии на него) */
+.custom-checkbox:not(:disabled):active+label::before {
+    background-color: #8ac6d1;
+    border-color: #8ac6d1;
+}
+/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+.custom-checkbox:focus:not(:checked)+label::before {
+    border-color: #8ac6d1;
+}
+/* стили для чекбокса, находящегося в состоянии disabled */
+.custom-checkbox:disabled+label::before {
+    background-color: #e9ecef;
+}
+.x-num-negative, .x-num-positive {
+    color: var(--neutral-color);
+}
+.x-num-negative::before{
+    margin-right: -1.2em;
+}
+.x-num-positive::before{
+    margin-right: -1em;
+}
+.x-values-table td {
+    padding: 0.4em;
+}
+
+#y-value, #r-value{
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid var(--neutral-color);
+    border-radius: 0.25em;
+    outline: none;
+    width: 41%;
+}
+::placeholder {
+    color: var(--neutral-color);
+}
+#y-value:hover, #r-value:hover {
+    border-color: #b3d7ff;
+}
+
+.x-label, .y-label, .r-label {
+    font-size: 1.1em;
+    //font-weight: bold;
+    color: var(--neutral-color);
+}
+.x-label {
+    margin-top: 3%;
+    margin-right: 3%;
+}
+.y-label {
+    margin-right: 5%;
+}
+.r-label{
+    margin-right: 5%;
+}
+
+.interactive-element {
+    margin-top: 5%;
+    margin-right: 5%;
+}
+.svg-coordinate-text {
+    font-size: 14px;
+}
+.svg-coordinate-line, .svg-axis {
+    stroke: black;
+}
+.svg-triangle-polygon {
+    fill: #17223b;
+    fill-opacity: 0.6;
+}
+.svg-triangle-polygon:hover {
+    fill-opacity: 0.8;
+}
+.svg-rectangle-polygon {
+    fill: #263859;
+    fill-opacity: 0.6;
+}
+.svg-rectangle-polygon:hover {
+    fill-opacity: 0.8;
+}
+.svg-sector-polygon {
+    fill: #6b778d;
+    fill-opacity: 0.6;
+}
+.svg-sector-polygon:hover {
+    fill: #415585;
+    fill-opacity: 0.8;
+}
+
+.vt-logo {
+    margin-left: 2%;
+    height: 80%;
+}
+
+.dec-bar {
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    height: 65px;
+    background-color: var(--handle-color);
+}
+
+.inner-scroll-container {
+    overflow: auto;
+    height: 100%;
+}
+
+.outer-scroll-container {
+    border-bottom-left-radius: 0.25em;
+    border-bottom-right-radius: 0.25em;
+    overflow: hidden;
+    height: 385px;
+}
+
+.coords-col {
+    width: 10%;
+}
+
+.time-col {
+    width: 25%;
+}
+
+.hit-res-col {
+    width: 20%;
+}
+
+.dec-table {
+    width: 100%;
+    background-color: var(--table-tr-darker-color);
+    height: 2em;
+    border-collapse: collapse;
+}
+
+#submit-button, #clear-button {
+    font-size: 1em;
+    color: white;
+    background-color: var(--table-tr-darker-color);
+    border-radius: 0.25em;
+    border: none;
+    width: 48%;
+    height: 2em;
+}
+
+#submit-button:hover, #clear-button:hover {
+    background-color: var(--neutral-color);
+}
+
+
+#result-table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+#result-table tr {
+    height: 2em;
+}
+
+#result-table thead tr {
+    background-color: var(--table-tr-darker-color);
+}
+
+#result-table tbody tr:nth-child(2n-1) {
+    background-color: var(--table-tr-lighter-color);
+}
+
+#result-table tbody tr:nth-child(2n-1):hover {
+    background-color: var(--table-tr-lighter-color-hover);
+}
+
+#result-table tbody tr:nth-child(2n) {
+    background-color: var(--table-tr-darker-color);
+}
+
+#result-table tbody tr:nth-child(2n):hover {
+    background-color: var(--table-tr-darker-color-hover);
+}
+
+
