@@ -1,5 +1,5 @@
-const inputBorderColor = "91969e"
-const redVtColor = "f02b4c"
+const validBorderColor = "91969e"
+const invalidBorderColor = "f02b4c"
 
 
 function checkboxHandler(o) {
@@ -48,10 +48,10 @@ $(document).ready(function() {
         let val = $(this).val()
 
         if (val !== "" && (isNaN(val) || val <= -5 || val >= 3)) {
-            $("#y-value").css("border-color", redVtColor)
+            $("#y-value").css("border-color", invalidBorderColor)
         }
         else{
-            $("#y-value").css("border-color", inputBorderColor)
+            $("#y-value").css("border-color", validBorderColor)
         }
     });
 
@@ -59,10 +59,10 @@ $(document).ready(function() {
         let val = $(this).val()
 
         if (val !== "" && (isNaN(val) || val <= 1 || val >= 4)) {
-            $("#r-value").css("border-color", redVtColor)
+            $("#r-value").css("border-color", invalidBorderColor)
         }
         else{
-            $("#r-value").css("border-color", inputBorderColor)
+            $("#r-value").css("border-color", validBorderColor)
         }
     });
 
@@ -78,25 +78,6 @@ $(document).ready(function() {
             }
         });
     })
-
-    $('#main-form').submit(function(e) {
-        e.preventDefault();
-
-        let form = $("#main-form")
-        let x_value = form.find('input[name="x-value"]').val()
-        let y_value = form.find('input[name="y-value"]').val()
-        let r_value = form.find('input[name="r-value"]').val()
-
-        let cursor_x = x_value / r_value * 100 + 130
-        let cursor_y = 130 - y_value / r_value * 100
-
-        let attrData = `x-value=${x_value}&y-value=${y_value}&r-value=${r_value}`
-        postRequest(attrData).then(function (response) {
-            $('#result-table tbody').append(response)
-            let hitResult = response.includes("true")
-            drawPoint(cursor_x, cursor_y, hitResult, 2.5)
-        })
-    });
 
     $('#svg-graph').on('click', function (event) {
         if (validateR()) {

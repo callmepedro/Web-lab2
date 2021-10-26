@@ -36,6 +36,10 @@ public class AreaCheckServlet extends HttpServlet {
             double yValue = Double.parseDouble(yValueStr);
             double rValue = Double.parseDouble(rValueStr);
 
+            if (!(validateY(yValue) && validateR(rValue))){
+                throw new NumberFormatException("Value out of range");
+            }
+
             boolean result = checkHitResult(xValue, yValue, rValue);
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -52,12 +56,24 @@ public class AreaCheckServlet extends HttpServlet {
             hitList.getHitList().add(hitData);
             session.setAttribute("hitList", hitList);
 
+            if (request.getParameter("redirect") != null){
+                request.getRequestDispatcher("table.jsp").forward(request, response);
+            }
+
             PrintWriter writer = response.getWriter();
             writer.println(hitData.getString());
+
 
         } catch (NumberFormatException e){
             response.sendError(403, "Invalid value. " + e.getMessage());
         }
+    }
+
+    public boolean validateY(double y){
+        return y > -5 && y < 3;
+    }
+    public boolean validateR(double r){
+        return r > 1 && r < 4;
     }
 
     private boolean checkHitResult(double x, double y, double r) {

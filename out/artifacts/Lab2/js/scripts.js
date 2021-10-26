@@ -13,6 +13,8 @@ function checkboxHandler(o) {
 
     let x_value = document.getElementById("x-value")
     x_value.value = o.value
+    // let redirect = document.getElementById("redirect")
+    // redirect.value = true
 }
 
 function validateX() {
@@ -80,22 +82,33 @@ $(document).ready(function() {
     })
 
     $('#main-form').submit(function(e) {
-        e.preventDefault();
-
-        let form = $("#main-form")
-        let x_value = form.find('input[name="x-value"]').val()
-        let y_value = form.find('input[name="y-value"]').val()
-        let r_value = form.find('input[name="r-value"]').val()
-
-        let cursor_x = x_value / r_value * 100 + 130
-        let cursor_y = 130 - y_value / r_value * 100
-
-        let attrData = `x-value=${x_value}&y-value=${y_value}&r-value=${r_value}`
-        postRequest(attrData).then(function (response) {
-            $('#result-table tbody').append(response)
-            let hitResult = response.includes("true")
-            drawPoint(cursor_x, cursor_y, hitResult, 2.5)
-        })
+        // let form = $("#main-form")
+        // form.find('input[name="redirect"]').val = "true";
+        // e.preventDefault();
+        //
+        // let form = $("#main-form")
+        // let x_value = form.find('input[name="x-value"]').val()
+        // let y_value = form.find('input[name="y-value"]').val()
+        // let r_value = form.find('input[name="r-value"]').val()
+        //
+        // let cursor_x = x_value / r_value * 100 + 130
+        // let cursor_y = 130 - y_value / r_value * 100
+        //
+        // let attrData = `x-value=${x_value}&y-value=${y_value}&r-value=${r_value}&redirect=true`
+        // $.post($(this).attr('action'), attrData)
+        // $.ajax({
+        //     type: "POST",
+        //     url: $(this).attr('action'),
+        //     data: attrData,
+        //     headers: {
+        //         redirect: true
+        //     }
+        // });
+        // postRequest(attrData).then(function (response) {
+        //     $('#result-table tbody').append(response)
+        //     let hitResult = response.includes("true")
+        //     drawPoint(cursor_x, cursor_y, hitResult, 2.5)
+        // })
     });
 
     $('#svg-graph').on('click', function (event) {

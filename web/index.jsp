@@ -38,7 +38,7 @@
             <tr></tr>
         </table>
 
-        <form id="main-form" method="post" action="${pageContext.request.contextPath}/entry">
+        <form id="main-form" method="post" action="${pageContext.request.contextPath}/main">
             <div id="left-container">
                 <div id="input-bar">
                     <div id="x-values-bar">
@@ -101,6 +101,7 @@
                     </div>
 
                     <input type="hidden" name="x-value" id="x-value">
+                    <input type="hidden" name="redirect" id="redirect" value="true">
 
                     <div id="button-bar">
                         <input type="submit" id="submit-button" value="submit">
@@ -177,7 +178,6 @@
                             <th class="time-col">Время исполнения (мс)</th>
                             <th class="hit-res-col">Результат</th>
                         </tr>
-
                     </thead>
                     <tbody>
                         <jsp:useBean id="hitList" scope="session" class="Components.HitList"/>
